@@ -1,0 +1,37 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    help.txt                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: adelille <adelille@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/03/06 11:34:01 by adelille          #+#    #+#              #
+#    Updated: 2021/03/06 11:45:08 by adelille         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+Registery used:
+	- rdi: first arg
+	- rsi: second arg
+	- rcx: used to count
+	- rax: return value
+	- al: last 8 bits of rax;
+	- bl: last 8 bits of rbx;
+
+Decomposition of rax:
+	================ rax (64 bits)
+	        ======== eax (32 bits)
+		        ====  ax (16 bits)
+		        ==    ah ( 8 bits)
+				  ==  al ( 8 bits)
+
+Syscall:
+	- write: put 1 in rax
+	- read:  put 0 in rax
+
+Errno:
+	__errno_location is equal to ___error in linux
+
+Man/book:
+	- Most useful help I fonud:
+https://en.wikibooks.org/wiki/X86_Assembly
