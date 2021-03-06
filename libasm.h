@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:05:16 by adelille          #+#    #+#             */
-/*   Updated: 2021/03/02 14:32:38 by adelille         ###   ########.fr       */
+/*   Updated: 2021/03/06 13:04:59 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,8 @@
 # include <stdio.h>
 
 size_t	ft_strlen(char *str);
+size_t	ft_write(int fd, char *str, int n);
+size_t	ft_read(int fd, char *str, int n);
+int		ft_strcmp(char *s1, char *s2);
 
 #endif

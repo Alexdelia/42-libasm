@@ -6,7 +6,7 @@
 #    By: adelille <adelille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/06 11:34:01 by adelille          #+#    #+#              #
-#    Updated: 2021/03/06 11:45:08 by adelille         ###   ########.fr        #
+#    Updated: 2021/03/06 12:39:58 by adelille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,3 +35,4 @@ Errno:
 Man/book:
 	- Most useful help I fonud:
 https://en.wikibooks.org/wiki/X86_Assembly
+	- Compiling: you can translate a C program in ASM with: clang -S ft_strlen.c
