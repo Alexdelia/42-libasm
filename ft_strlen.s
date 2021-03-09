@@ -6,9 +6,12 @@ ft_strlen:
 	jmp		loop					; do loop
 
 loop:
+	cmp		BYTE [rdi + rcx], 0		; compare str[i] to '\0'
+	je		end						; jump to loop if (str[i] == '\0')
 	inc		rcx						; increment rcx
-	cmp		byte [rcx + rdi], 0x0	; compare str[i] to '\0'
-	je		loop					; jump to loop if (str[i] == '\0')
+	jmp		loop					; jump to loop
+
+end:
 	mov		rax,	rcx				; ret = i;
-	pop		rbp						; clean up the stack
+	pop		rcx						; clean up the stack
 	ret								; return (ret); / return (i);
