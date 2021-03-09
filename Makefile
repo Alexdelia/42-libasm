@@ -6,7 +6,7 @@
 #    By: adelille <adelille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/30 19:21:49 by adelille          #+#    #+#              #
-#    Updated: 2021/03/09 14:07:53 by adelille         ###   ########.fr        #
+#    Updated: 2021/03/09 14:33:18 by adelille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ RM = 	rm -rf
 # FLAGS =	-O2
 NASM =	nasm
 NFLAGS = -f elf64
+TESTNAME = libasm_test.out
 
 # **************************************************************************** #
 
@@ -47,33 +48,37 @@ SRCSNAME = ft_strlen.s \
 		   ft_write.s \
 		   ft_read.s
 
-SRCS = $(addprefix $(SRCSPATH), $(SRCSNAME))
-OBJSNAME = $(SRCSNAME:.s=.o)
+#SRCS = $(addprefix $(SRCSPATH), $(SRCSNAME))
+#OBJSNAME = $(SRCSNAME:.s=.o)
 #OBJS = $(addprefix $(OBJSPATH), $(OBJSNAME))
-OBJS = $(OBJSPATH)*.o
+OBJS = $(SRCSNAME:.s=.o)
 
 # *************************************************************************** #
 
+%.o:	%.s
+	@$(NASM) $(NFLAGS) $< -o $@
+
 all:	$(NAME)
 
-$(NAME):
-	@mkdir $(OBJSPATH) 2> /dev/null || true
-	@$(NASM) $(NFLAGS) -o $(SRCS)
-	@mv *.o $(OBJSPATH)
-	@$(CC) $(OBJS) $(LBNAME) -L$(LBPATH) $(LBINC) -I$(INC) -o $(NAME)
+$(NAME):	$(OBJS)
+	@ar rcs $(NAME) $(OBJS)
+	@echo "$(B)$(MAG)$(BEL)libasm.a\tcompiled !$(D)"
+
+test: main.c
+	@$(CC) main.c $(NAME) -o $(TESTNAME)
+	@echo "$(B)$(MAG)$(BEL)$(TESTNAME)\tcompiled !$(D)"
 
 clean:
 	@$(RM) $(OBJS)
-	@rmdir $(OBJSPATH) 2> /dev/null || true
+	@echo "$(B)Cleared$(D)"
 
 fclean: clean
-	@$(RM) $(NAME) $(MLXM)
+	@$(RM) $(NAME) $(TESTNAME)
 
 re:	fclean all
 
 bonus:
-
-test:
+	@echo "$(B)$(MAG)$(BEL)bonus\tcompiled !$(D)"
 
 .PHONY: all, clean, fclean, re, bonus, test
 

@@ -7,7 +7,7 @@ ft_read:
 	mov		rax,	0		; rax = 0 (syscall read)
 	syscall
 	test	rax,	rax		; if rax < 0 https://en.wikipedia.org/wiki/TEST_(x86_instruction)
-	js		error_write		; if rax < 0, jump to error_read
+	js		error_read		; if rax < 0, jump to error_read
 	pop		rbx				; clean up the stack
 	ret						; return
 
