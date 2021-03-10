@@ -6,7 +6,7 @@
 #    By: adelille <adelille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/30 19:21:49 by adelille          #+#    #+#              #
-#    Updated: 2021/03/09 14:33:18 by adelille         ###   ########.fr        #
+#    Updated: 2021/03/10 17:52:51 by adelille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,11 +62,11 @@ all:	$(NAME)
 
 $(NAME):	$(OBJS)
 	@ar rcs $(NAME) $(OBJS)
-	@echo "$(B)$(MAG)$(BEL)libasm.a\tcompiled !$(D)"
+	@echo "\n$(B)$(MAG)$(BEL)libasm.a\tcompiled !$(D)\n"
 
 test: main.c
 	@$(CC) main.c $(NAME) -o $(TESTNAME)
-	@echo "$(B)$(MAG)$(BEL)$(TESTNAME)\tcompiled !$(D)"
+	@echo "\n$(B)$(MAG)$(BEL)$(TESTNAME)\tcompiled !$(D)\n"
 
 clean:
 	@$(RM) $(OBJS)
@@ -78,7 +78,7 @@ fclean: clean
 re:	fclean all
 
 bonus:
-	@echo "$(B)$(MAG)$(BEL)bonus\tcompiled !$(D)"
+	@echo "\n$(B)$(MAG)$(BEL)bonus\tcompiled !$(D)\n"
 
 .PHONY: all, clean, fclean, re, bonus, test
 
