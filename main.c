@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:51:44 by adelille          #+#    #+#             */
-/*   Updated: 2021/03/10 17:54:17 by adelille         ###   ########.fr       */
+/*   Updated: 2021/03/10 18:42:11 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
+#include <errno.h>
 
 int		ft_ps(char *str)
 {
@@ -57,7 +58,7 @@ void	t_strcmp(void)
 {
 	ft_psc("  ~~ ft_strcmp ~~\n", IMAG);
 	printf("\ninput 1:\t\"%s\"\ninput 2:\t\"%s\"\n   your:  %d\n    ref:  %d\t%s\n\n", STR, STR, ft_strcmp(STR, STR), strcmp(STR, STR), (ft_strcmp(STR, STR) == strcmp(STR, STR) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
-	printf("\ninput 1:\t\"%s\"\ninput 2:\t\"%s\"\n   your:  %d\n    ref:  %d\t%s\n\n", STR, STR2, ft_strcmp(STR, STR2), strcmp(STR, STR2), (ft_strcmp(STR, STR2) == strcmp(STR, STR2) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	printf("\ninput 1:\t\"%s\"\ninput 2:\t\"%s\"\n   your:  %d\n    ref:  %d\t%s\n\n", STR, STR2, ft_strcmp(STR, STR2), strcmp(STR, STR2), (ft_strcmp(STR, STR2) == strcmp(STR, STR2) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[1;3;33m"));
 	printf("\ninput 1:\t\"%s\"\ninput 2:\t\"%s\"\n   your:  %d\n    ref:  %d\t%s\n\n", "", "", ft_strcmp("", ""), strcmp("", ""), (ft_strcmp("", "") == strcmp("", "") ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
 	printf("\ninput 1:\t\"%s\"\ninput 2:\t\"%s\"\n   your:  %d\n    ref:  %d\t%s\n\n", "", STR, ft_strcmp("", STR), strcmp("", STR), (ft_strcmp("", STR) == strcmp("", STR) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
 
@@ -65,7 +66,20 @@ void	t_strcmp(void)
 
 void	t_strcpy(void)
 {
+	char	y_dest[30];
+	char	r_dest[30];
+	//char	s_dest[10];
+	//char	sr_dest[10];
+	char	*str;
+
 	ft_psc("  ~~ ft_strcpy ~~\n", IMAG);
+	str = STR;
+	printf("\ninput:\t\"%s\"\t\t(dest[30])\n your:\t%s\n  ref:\t%s\t%s\n\n", str, ft_strcpy(y_dest, str), strcpy(r_dest, str), (ft_strcmp(y_dest, r_dest) == 0 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	str = "";
+	printf("\ninput:\t\"%s\"\t\t\t\t\t(dest[30])\n your:\t%s\n  ref:\t%s\t%s\n\n", str, ft_strcpy(y_dest, str), strcpy(r_dest, str), (ft_strcmp(y_dest, r_dest) == 0 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	// negliged case
+	/*str = STR2;
+	printf("\ninput:\t\"%s\"\t(dest[10])\n your:\t%s\n  ref:\t%s\t%s\n\n", str, ft_strcpy(s_dest, str), strcpy(sr_dest, str), (ft_strcmp(y_dest, r_dest) == 0 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m\t\033[3;33mThis case can be negliged\033[0m"));*/
 }
 
 int		main(void)
@@ -73,8 +87,8 @@ int		main(void)
 	ft_psc("\n\t---\t Starting\t---\t\n", BIMAG);
 	t_strlen();
 	t_strcmp();
-	/*t_strcpy();
-	t_write();
+	t_strcpy();
+	/*t_write();
 	t_read();
 	t_strdup();*/
 	// ft_psc("\n\t---\t  Bonus \t---\t\n", BIMAG);

@@ -6,7 +6,7 @@
 #    By: adelille <adelille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/30 19:21:49 by adelille          #+#    #+#              #
-#    Updated: 2021/03/10 17:52:51 by adelille         ###   ########.fr        #
+#    Updated: 2021/03/10 18:06:40 by adelille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ $(NAME):	$(OBJS)
 	@ar rcs $(NAME) $(OBJS)
 	@echo "\n$(B)$(MAG)$(BEL)libasm.a\tcompiled !$(D)\n"
 
-test: main.c
+test: main.c all
 	@$(CC) main.c $(NAME) -o $(TESTNAME)
 	@echo "\n$(B)$(MAG)$(BEL)$(TESTNAME)\tcompiled !$(D)\n"
 
