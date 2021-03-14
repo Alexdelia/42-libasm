@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:51:44 by adelille          #+#    #+#             */
-/*   Updated: 2021/03/14 18:48:44 by adelille         ###   ########.fr       */
+/*   Updated: 2021/03/14 19:36:44 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #define BIMAG	"\033[1;3;35m"
 #define RED		"\033[1;31m"
 #define	GRN		"\033[1;32m"
+#define SBLU	"\033[5;3;34m"
 #define DEF		"\033[0m"
 
 #define STR		"A little turtle hug a racoon."
@@ -27,6 +28,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
+#include <fcntl.h>
 
 int		ft_ps(char *str)
 {
@@ -92,7 +94,7 @@ void	t_write(void)
 	printf("\n\ninput:\t\"%s\"\n your:\t%zu\n  ref:\t%zd\t%s\n\n", s, ft_write(1, s, ft_strlen(s)), write(1, s, ft_strlen(s)), ((size_t)ft_write(1, s, ft_strlen(s)) == (size_t)write(1, s, ft_strlen(s)) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
 	s = STR2;
 	ft_psc(" output of write:\n", "\033[5;3;34m");
-	printf("\n\ninput:\t\"%s\"\t(fd = 4)\n your:\t%zu\n  ref:\t%zd\t%s\n\n", s, ft_write(4, s, ft_strlen(s)), write(4, s, ft_strlen(s)), ((size_t)ft_write(4, s, ft_strlen(s)) == (size_t)write(4, s, ft_strlen(s)) ? "\033[1;32m[OK]\033[0m\t\033[3;34mResult is due to casting as (size_t), work has intended\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	printf("\n\ninput:\t\"%s\"\t(fd = 4)\n your:\t%zu\n  ref:\t%zd\t%s\n\n", s, ft_write(4, s, ft_strlen(s)), write(4, s, ft_strlen(s)), ((size_t)ft_write(4, s, ft_strlen(s)) == (size_t)write(4, s, ft_strlen(s)) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
 	s = "";
 	ft_psc(" output of write:\n", "\033[5;3;34m");
 	printf("\n\ninput:\t\"%s\"\n your:\t%zu\n  ref:\t%zd\t%s\n\n", s, ft_write(1, s, ft_strlen(s)), write(1, s, ft_strlen(s)), ((size_t)ft_write(1, s, ft_strlen(s)) == (size_t)write(1, s, ft_strlen(s)) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
@@ -104,6 +106,63 @@ void	t_write(void)
 	printf("\n\ninput:\t\"%s\"\t(overwriting)\n your:\t%zu\n  ref:\t%zd\t%s\n\n", s, ft_write(1, s, 35), write(1, s, 35), ((size_t)ft_write(1, s, 35) == (size_t)write(1, s, 35) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
 }
 
+void	t_read(void)
+{	
+	int		fd;
+	int		tmp;
+	char	buffer[1025];
+
+	ft_psc("  ~~ ft_read ~~\n", IMAG);
+	ft_psc("\n Initialising read.txt file", SBLU);
+	fd = open("read.txt", O_CREAT);
+	ft_write(fd, STR, ft_strlen(STR));
+	ft_ps("\tDone\n");
+	
+	buffer[1024] = '\0';
+	printf("\n\n input:\t%s\n  your:\t%zu\n", "ft_read(fd, buffer, 1024)\t(fd = -1)", ft_read(fd, buffer, 1024));
+	printf("output:\t%s\n", buffer);
+	printf("   ref:\t%zd\n", read(fd, buffer, 1024));
+	printf("output:\t%s", buffer);
+	printf("\t%s\n\n", (ft_read(fd, buffer, 1024) == ft_read(fd, buffer, 1024) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+
+	buffer[10] = '\0';
+	printf("\n\n input:\t%s\n  your:\t%zu\n", "ft_read(fd, buffer, 10)\t(buffer[10] = '\\0')", ft_read(fd, buffer, 10));
+	printf("output:\t%s\n", buffer);
+	printf("   ref:\t%zd\n", read(fd, buffer, 10));
+	printf("output:\t%s", buffer);
+	printf("\t%s\n\n", (ft_read(fd, buffer, 10) == ft_read(fd, buffer, 10) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	
+	buffer[0] = '\0';
+	printf("\n\n input:\t%s\n  your:\t%zu\n", "ft_read(fd, buffer, 29)\t(buffer[0] = '\\0')", ft_read(fd, buffer, 29));
+	printf("output:\t%s\n", buffer);
+	printf("   ref:\t%zd\n", read(fd, buffer, 29));
+	printf("output:\t%s", buffer);
+	printf("\t%s\n\n", (ft_read(fd, buffer, 29) == ft_read(fd, buffer, 29) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	
+	buffer[29] = '\0';
+	tmp = fd;
+	fd = -1;
+	printf("\n\n input:\t%s\n  your:\t%zu\n", "ft_read(fd, buffer, 29)\t(fd = -1)", ft_read(fd, buffer, 29));
+	printf("output:\t%s\n", buffer);
+	printf("   ref:\t%zd\n", read(fd, buffer, 29));
+	printf("output:\t%s", buffer);
+	printf("\t%s\n\n", (ft_read(fd, buffer, 29) == ft_read(fd, buffer, 29) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	close(tmp);
+	
+	ft_ps("fd = 0, write something please\n");
+	fd = 0;
+	printf("\n\n input:\t%s\n  your:\t%zu\n", "ft_read(fd, buffer, 100)\t(fd = 1)", ft_read(fd, buffer, 100));
+	printf("output:\t%s\n", buffer);
+	printf("   ref:\t%zd\n", read(fd, buffer, 100));
+	printf("output:\t%s", buffer);
+	printf("\t%s\n\n", (ft_read(fd, buffer, 100) == ft_read(fd, buffer, 100) ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+}
+
+void	t_strdup(void)
+{
+
+}
+
 int		main(void)
 {
 	ft_psc("\n\t---\t Starting\t---\t\n", BIMAG);
@@ -111,8 +170,8 @@ int		main(void)
 	t_strcmp();
 	t_strcpy();
 	t_write();
-	/*t_read();
-	t_strdup();*/
+	t_read();
+	t_strdup();
 	// ft_psc("\n\t---\t  Bonus \t---\t\n", BIMAG);
 	ft_psc("\n\t---\t   Done  \t---\t\n\n", BIMAG);
 	return (0);
