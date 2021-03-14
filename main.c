@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:51:44 by adelille          #+#    #+#             */
-/*   Updated: 2021/03/14 19:36:44 by adelille         ###   ########.fr       */
+/*   Updated: 2021/03/14 19:44:25 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,13 @@ void	t_read(void)
 
 void	t_strdup(void)
 {
+	char	*str;
 
+	ft_psc("  ~~ ft_strdup ~~\n", IMAG);
+	str = STR;
+	printf("\ninput:\t\"%s\"\n your:\t%s\n  ref:\t%s\t%s\n\n", str, ft_strdup(str), strdup(str), (ft_strcmp(ft_strdup(str), strdup(str)) == 0 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	str = "";
+	printf("\ninput:\t\"%s\"\n your:\t%s\n  ref:\t%s\t%s\n\n", str, ft_strdup(str), strdup(str), (ft_strcmp(ft_strdup(str), strdup(str)) == 0 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
 }
 
 int		main(void)
