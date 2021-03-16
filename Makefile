@@ -6,7 +6,7 @@
 #    By: adelille <adelille@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/30 19:21:49 by adelille          #+#    #+#              #
-#    Updated: 2021/03/10 18:06:40 by adelille         ###   ########.fr        #
+#    Updated: 2021/03/16 23:38:29 by adelille         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,14 @@ SRCSNAME = ft_strlen.s \
 		   ft_write.s \
 		   ft_read.s
 
+BONUSNAME = ft_list_push_front.s \
+			ft_list_size.s
+
 #SRCS = $(addprefix $(SRCSPATH), $(SRCSNAME))
 #OBJSNAME = $(SRCSNAME:.s=.o)
 #OBJS = $(addprefix $(OBJSPATH), $(OBJSNAME))
 OBJS = $(SRCSNAME:.s=.o)
+BONUSOBJS = $(BONUSNAME:.s=.o)
 
 # *************************************************************************** #
 
@@ -69,7 +73,7 @@ test: main.c all
 	@echo "\n$(B)$(MAG)$(BEL)$(TESTNAME)\tcompiled !$(D)\n"
 
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(BONUSOBJS)
 	@echo "$(B)Cleared$(D)"
 
 fclean: clean
@@ -77,7 +81,8 @@ fclean: clean
 
 re:	fclean all
 
-bonus:
+bonus: $(OBJS) $(BONUSOBJS)
+	@ar rcs $(NAME) $(OBJS) $(BONUSOBJS)
 	@echo "\n$(B)$(MAG)$(BEL)bonus\tcompiled !$(D)\n"
 
 .PHONY: all, clean, fclean, re, bonus, test
