@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:51:44 by adelille          #+#    #+#             */
-/*   Updated: 2021/03/14 19:44:25 by adelille         ###   ########.fr       */
+/*   Updated: 2021/03/17 00:14:35 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,43 @@ void	t_strdup(void)
 	printf("\ninput:\t\"%s\"\n your:\t%s\n  ref:\t%s\t%s\n\n", str, ft_strdup(str), strdup(str), (ft_strcmp(ft_strdup(str), strdup(str)) == 0 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
 }
 
+void	ft_plist(t_list *list)
+{
+	while (list)
+	{
+		ft_ps(list->data);
+		ft_ps("\n\n");
+		list = list->next;
+	}
+}
+
+void	t_bonus(void)
+{
+	
+	t_list	list;
+	t_list	list_next;
+	t_list	list_last;
+	
+	list.data = strdup(STR);
+	list.next = &list_next;
+	list_next.data = strdup("         ,\\\n         \\\\\\,_\n          \\` ,\\\n     __,.-\" =__)\n   .\"        )\n,_/   ,    \\/\\_\n\\_|    )_-\\ \\_-`\n   `-----` `--`\n");
+	list_last.data = strdup("Rabbits are nice");
+	list_last.next = NULL;
+	
+	ft_psc("  ~~ ft_list_size + ft_list_push_front ~~\n", IMAG);
+	ft_ps("input:\n\n");
+	ft_plist(&list);
+	printf("\n your:%d\n  ref:%d\t%s", ft_list_size(&list), 3, (ft_list_size(&list) == 3 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	ft_ps("input:\n\n");
+	ft_plist(&list_next);
+	printf("\n your:%d\n  ref:%d\t%s", ft_list_size(&list_next), 2, (ft_list_size(&list_next) == 2 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	ft_ps("input:\n\n");
+	ft_plist(&list_last);
+	printf("\n your:%d\n  ref:%d\t%s", ft_list_size(&list_last), 1, (ft_list_size(&list_last) == 1 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	ft_ps("input:\t(NULL)");
+	printf("\n your:%d\n  ref:%d\t%s", ft_list_size(NULL), 0, (ft_list_size(NULL) == 0 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+}
+
 int		main(void)
 {
 	ft_psc("\n\t---\t Starting\t---\t\n", BIMAG);
@@ -178,7 +215,8 @@ int		main(void)
 	t_write();
 	t_read();
 	t_strdup();
-	// ft_psc("\n\t---\t  Bonus \t---\t\n", BIMAG);
+	ft_psc("\n\t---\t  Bonus \t---\t\n", BIMAG);
+	t_bonus();
 	ft_psc("\n\t---\t   Done  \t---\t\n\n", BIMAG);
 	return (0);
 }
