@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:51:44 by adelille          #+#    #+#             */
-/*   Updated: 2021/03/17 01:05:11 by adelille         ###   ########.fr       */
+/*   Updated: 2021/03/17 01:16:35 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,7 +199,7 @@ void	t_bonus(void)
 	ft_psc("  ~~ ft_list_size ~~\n\n", IMAG);
 	ft_ps("input:\n");
 	ft_plist(&list);
-	printf("\n your:\t%d\n  ref:\t%d\t%s\n", ft_list_size(&list), 3, (ft_list_size(&list) == 3 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
+	printf("\n your:\t%d\n  ref:\t%d\t%s\n\n", ft_list_size(&list), 3, (ft_list_size(&list) == 3 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
 	printf("input:\t(second of the list)\n your:\t%d\n  ref:\t%d\t%s\n\n", ft_list_size(&list_next), 2, (ft_list_size(&list_next) == 2 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
 	printf("input:\t(last of the list)\n your:\t%d\n  ref:\t%d\t%s\n\n", ft_list_size(&list_last), 1, (ft_list_size(&list_last) == 1 ? "\033[1;32m[OK]\033[0m" : "\033[1;5;31m[KO]\033[0m"));
 	ft_ps("input:\t(NULL)");
