@@ -1,6 +1,6 @@
 global ft_list_size
 
-ft_lise_size:
+ft_list_size:
 	mov		rsi,	rdi		; rsi = rdi (begin)
 	xor		rax,	rax		; rax = 0
 	jmp		loop			; jump to loop
