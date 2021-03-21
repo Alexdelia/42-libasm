@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:51:44 by adelille          #+#    #+#             */
-/*   Updated: 2021/03/17 01:16:35 by adelille         ###   ########.fr       */
+/*   Updated: 2021/03/21 17:57:32 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #define SBLU	"\033[5;3;34m"
 #define DEF		"\033[0m"
 
-#define STR		"A little turtle hug a racoon."
+#define STR		"A little turtle hugs a racoon."
 #define STR2	"A little turtle meet a racoon."
 
 #include <unistd.h>
