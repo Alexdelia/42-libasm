@@ -6,7 +6,7 @@
 /*   By: adelille <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 13:51:44 by adelille          #+#    #+#             */
-/*   Updated: 2021/03/21 17:59:29 by adelille         ###   ########.fr       */
+/*   Updated: 2021/03/21 18:06:30 by adelille         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #define DEF		"\033[0m"
 
 #define STR		"A little turtle hugs a raccoon."
-#define STR2	"A little turtle meet a raccoon."
+#define STR2	"A little turtle meets a raccoon."
 
 #include <unistd.h>
 #include <string.h>
